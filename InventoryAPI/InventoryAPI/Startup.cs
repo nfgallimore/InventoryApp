@@ -11,6 +11,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InventoryAPI.Extensions;
+using InventoryAPI.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace InventoryAPI
 {
@@ -32,6 +35,8 @@ namespace InventoryAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "InventoryAPI", Version = "v1" });
             });
+            services.RegisterServices();
+            ConfigureDatabase(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,6 +59,12 @@ namespace InventoryAPI
             {
                 endpoints.MapControllers();
             });
+        }
+
+        public void ConfigureDatabase(IServiceCollection services)
+        {
+            services.AddDbContext<InventoryDBContext>(options =>
+                options.UseMySQL(Configuration.GetConnectionString("InventoryDB")));
         }
     }
 }

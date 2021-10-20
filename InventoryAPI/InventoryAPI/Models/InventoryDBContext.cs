@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace InventoryAPI.Models
 {
-    public partial class localdbContext : DbContext
+    public partial class InventoryDBContext : DbContext
     {
-        public localdbContext()
+        public InventoryDBContext()
         {
         }
 
-        public localdbContext(DbContextOptions<localdbContext> options)
+        public InventoryDBContext(DbContextOptions<InventoryDBContext> options)
             : base(options)
         {
         }
