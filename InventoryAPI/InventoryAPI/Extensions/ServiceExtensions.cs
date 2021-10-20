@@ -15,6 +15,7 @@ namespace InventoryAPI.Extensions
         public static void RegisterServices(this IServiceCollection services)
         {
             services.AddScoped<IOrdersRepository, OrdersRepository>();
+            services.AddScoped<IItemsRepository, ItemsRepository>();
         }
     }
 }
