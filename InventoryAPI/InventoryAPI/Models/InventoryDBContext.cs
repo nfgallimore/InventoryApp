@@ -24,7 +24,7 @@ namespace InventoryAPI.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseMySQL("Name=Inventorydb");
+                optionsBuilder.UseMySQL("Name=InventoryDB");
             }
         }
 

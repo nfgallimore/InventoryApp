@@ -29,7 +29,7 @@ namespace InventoryAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddCors();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -46,8 +46,14 @@ namespace InventoryAPI
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "InventoryAPI v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("../swagger/v1/swagger.json", "InventoryAPI v1"));
             }
+
+            app.UseCors(x => x
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .SetIsOriginAllowed(origin => true)
+                .AllowCredentials());
 
             app.UseHttpsRedirection();
 
@@ -59,6 +65,7 @@ namespace InventoryAPI
             {
                 endpoints.MapControllers();
             });
+
         }
 
         public void ConfigureDatabase(IServiceCollection services)

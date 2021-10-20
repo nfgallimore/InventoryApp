@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace InventoryAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("v1/[controller]")]
     public class ItemsController : Controller
     {
         private readonly IItemsRepository _itemsRepository;

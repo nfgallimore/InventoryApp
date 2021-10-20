@@ -6,7 +6,7 @@ using InventoryAPI.Models;
 namespace InventoryAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("v1/[controller]")]
     public class OrdersController : Controller
     {
         private readonly IOrdersRepository _ordersRepository;
