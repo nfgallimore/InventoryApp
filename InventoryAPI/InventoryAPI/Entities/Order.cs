@@ -1,9 +1,13 @@
-﻿#nullable disable
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+
+#nullable disable
 
 namespace InventoryAPI.Entities
 {
     public partial class Order
     {
+        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Contact { get; set; }

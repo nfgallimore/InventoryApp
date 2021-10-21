@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using InventoryAPI.Entities;
 using InventoryAPI.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace InventoryAPI.Repositories
 {
@@ -32,18 +33,30 @@ namespace InventoryAPI.Repositories
 
         public int CreateOrder(Order order)
         {
-            return _context.Orders.Add(order).Entity.Id;
+            _context.Orders.Add(order);
+            _context.SaveChanges();
+            return order.Id;
         }
 
         public Order UpdateOrder(Order order)
         {
-            return _context.Orders.Update(order).Entity;
+            Order dbOrder = _context.Orders.Find(order.Id);
+            dbOrder.Contact = order.Contact;
+            dbOrder.ItemId = order.ItemId;
+            dbOrder.Name = order.Name;
+            dbOrder.Price = order.Price;
+            dbOrder.Quantity = order.Quantity;
+            dbOrder.Total = order.Total;
+
+            _context.Entry(dbOrder).State = EntityState.Modified;
+            _context.SaveChanges();
+            return order;
         }
 
         public void DeleteOrder(int id)
         {
             _context.Orders.Remove(GetOrder(id));
+            _context.SaveChanges();
         }
-
     }
 }

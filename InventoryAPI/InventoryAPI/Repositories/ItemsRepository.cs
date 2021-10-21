@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using InventoryAPI.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace InventoryAPI.Repositories
 {
@@ -31,17 +32,22 @@ namespace InventoryAPI.Repositories
 
         public int CreateItem(Item item)
         {
-            return _context.Items.Add(item).Entity.Id;
+            _context.Items.Add(item);
+            _context.SaveChanges();
+            return item.Id;
         }
 
         public Item UpdateItem(Item item)
         {
-            return _context.Items.Update(item).Entity;
+            _context.Entry(item).State = EntityState.Modified;
+            _context.SaveChanges();
+            return item;
         }
 
         public void DeleteItem(int id)
         {
             _context.Items.Remove(GetItem(id));
+            _context.SaveChanges();
         }
     }
 }

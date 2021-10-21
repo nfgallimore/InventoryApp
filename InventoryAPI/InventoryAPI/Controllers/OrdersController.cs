@@ -20,30 +20,18 @@ namespace InventoryAPI.Controllers
         [HttpPost]
         public IActionResult CreateOrder([FromBody] OrderViewModel order)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
             int id = _ordersRepository.CreateOrder(order.ToEntity());
             return Created(id.ToString(), order);
         }
 
         [HttpGet]
-        public IActionResult GetOrders(int? id, string name)
+        public IActionResult GetOrders()
         {
-            // Get by ID
-            if (id.HasValue)
-            {
-                Order order = _ordersRepository.GetOrder(id.Value);
-                if (order == null)
-                {
-                    return NotFound();
-                }
-                return Ok(order);
-            }
-
-            // Get by name
-            if (!string.IsNullOrEmpty(name))
-            {
-                return Ok(_ordersRepository.GetUserOrders(name));
-            }
-
             // Get all orders
             List<Order> orders = _ordersRepository.GetOrders();
             return Ok(orders);
@@ -52,6 +40,11 @@ namespace InventoryAPI.Controllers
         [HttpPut]
         public IActionResult UpdateOrder([FromBody] OrderViewModel updatedOrder)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
             Order oldOrder = _ordersRepository.GetOrder(updatedOrder.Id);
             if (oldOrder == null)
             {
@@ -62,16 +55,16 @@ namespace InventoryAPI.Controllers
         }
 
 
-        [HttpGet("Delete")]
-        public IActionResult DeleteOrder(int orderId)
+        [HttpDelete]
+        public IActionResult DeleteOrder(int id)
         {
-            Order order = _ordersRepository.GetOrder(orderId);
+            Order order = _ordersRepository.GetOrder(id);
             if (order == null)
             {
                 return NotFound();
             }
 
-            _ordersRepository.DeleteOrder(orderId);
+            _ordersRepository.DeleteOrder(id);
 
             return Ok();
         }

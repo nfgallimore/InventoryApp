@@ -32,6 +32,8 @@ namespace InventoryAPI.Entities
             {
                 entity.ToTable("items");
 
+                entity.HasKey(e => e.Id);
+
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Brand)
@@ -57,6 +59,8 @@ namespace InventoryAPI.Entities
             modelBuilder.Entity<Order>(entity =>
             {
                 entity.ToTable("orders");
+
+                entity.HasKey(e => e.Id);
 
                 entity.HasIndex(e => e.ItemId, "item_id_idx");
 
