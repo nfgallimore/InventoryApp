@@ -1,8 +1,17 @@
 table {
-  width: 95%;
+  width: calc(100% - 80px);
   margin: auto;
 }
 
-h2 { 
+h1 { 
   margin: 40px;
+}
+
+.edit-icon {
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.delete-icon {
+  cursor: pointer;
 }
