@@ -1,28 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { OrderFormComponent } from 'src/app/components/orders/order-form/order-form.component';
+import { OrdersTableComponent } from 'src/app/components/orders/orders-table/orders-table.component';
+import { OrdersService } from 'src/app/services/orders.service';
 
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.css']
 })
-export class OrdersComponent implements OnInit {
+export class OrdersComponent {
 
-  constructor(public dialog: MatDialog) { }
+  @ViewChild(OrdersTableComponent) ordersTable: OrdersTableComponent;
 
-  ngOnInit() {
-
-  }
+  constructor(public dialog: MatDialog, private ordersService: OrdersService) { }
 
   onCreate(): void {
-    const dialogRef = this.dialog.open(OrderFormComponent, {
+    this.dialog.open(OrderFormComponent, {
       width: '500px',
       data: null,
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      // do something after closing
+    }).afterClosed().subscribe(order => {
+      if (order) {
+        this.ordersService.createOrder(order).subscribe(() => this.ordersTable.getOrders());
+      }
     });
   }
 }

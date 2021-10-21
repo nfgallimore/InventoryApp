@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using InventoryAPI.Entities;
 using Microsoft.AspNetCore.Mvc;
 using InventoryAPI.Interfaces;
-using InventoryAPI.Models;
+using InventoryAPI.ViewModels;
 
 namespace InventoryAPI.Controllers
 {
@@ -17,59 +18,53 @@ namespace InventoryAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateOrder([FromBody] Order order)
+        public IActionResult CreateOrder([FromBody] OrderViewModel order)
         {
-            return Created(order.Id.ToString(), order);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            int id = _ordersRepository.CreateOrder(order.ToEntity());
+            return Created(id.ToString(), order);
         }
 
         [HttpGet]
-        public IActionResult GetOrders(int? id, string name)
+        public IActionResult GetOrders()
         {
-            // Get by ID
-            if (id.HasValue)
-            {
-                Order order = _ordersRepository.GetOrder(id.Value);
-                if (order == null)
-                {
-                    return NotFound();
-                }
-                return Ok(order);
-            }
-
-            // Get by name
-            if (!string.IsNullOrEmpty(name))
-            {
-                return Ok(_ordersRepository.GetUserOrders(name));
-            }
-
             // Get all orders
             List<Order> orders = _ordersRepository.GetOrders();
             return Ok(orders);
         }
 
         [HttpPut]
-        public IActionResult UpdateOrder([FromBody] Order updatedOrder)
+        public IActionResult UpdateOrder([FromBody] OrderViewModel updatedOrder)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
             Order oldOrder = _ordersRepository.GetOrder(updatedOrder.Id);
             if (oldOrder == null)
             {
                 return NotFound();
             }
 
-            return Ok(_ordersRepository.UpdateOrder(updatedOrder));
+            return Ok(_ordersRepository.UpdateOrder(updatedOrder.ToEntity()));
         }
 
 
-        [HttpGet("Delete")]
-        public IActionResult DeleteOrder(int orderId)
+        [HttpDelete]
+        public IActionResult DeleteOrder(int id)
         {
-            Order order = _ordersRepository.GetOrder(orderId);
+            Order order = _ordersRepository.GetOrder(id);
             if (order == null)
             {
                 return NotFound();
             }
 
-            _ordersRepository.DeleteOrder(orderId);
+            _ordersRepository.DeleteOrder(id);
 
             return Ok();
         }

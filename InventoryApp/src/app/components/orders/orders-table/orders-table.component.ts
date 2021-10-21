@@ -18,27 +18,38 @@ export class OrdersTableComponent implements OnInit {
   constructor(private ordersService: OrdersService, public dialog: MatDialog) { }
 
   ngOnInit() {
-    // get orders from ordersService
-    this.ordersService.getOrders().subscribe((orders: Order[]) => {
-      this.orders = orders;
-    });
+    this.getOrders();
   }
 
   onEdit(order): void {
     this.dialog.open(OrderFormComponent, {
       width: '500px',
       data: order,
+    }).afterClosed().subscribe(order => {
+      if (order) {
+        this.ordersService.updateOrder(order).subscribe(() => {
+          this.getOrders();
+        });
+      }
     });
   }
 
   onDelete(id): void {
     this.dialog.open(ConfirmComponent, {
       width: '500px',
-      data: {message: 'Are you sure you want to delete this order?'}
-    }).afterClosed().subscribe(data => {
-      if (data.confirmed) {
-        // delete it
+      data: 'Are you sure you want to delete this order?'
+    }).afterClosed().subscribe(confirmed => {
+      if (confirmed) {
+        this.ordersService.deleteOrder(id).subscribe(() => {
+          this.getOrders();
+        });
       }
+    });
+  }
+
+  getOrders() {
+    this.ordersService.getOrders().subscribe((orders: Order[]) => {
+      this.orders = orders;
     });
   }
 

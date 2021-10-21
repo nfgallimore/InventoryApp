@@ -36,4 +36,17 @@ export class OrdersService {
         }
     }));
   }
+
+  public deleteOrder(id: number): Observable<Object> {
+    return this.httpClient.delete(`${environment.apiUrl}/v1/orders?id=${id}`);
+  }
+
+  public updateOrder(order: Order): Observable<Object> {
+    return this.httpClient.put(`${environment.apiUrl}/v1/orders`, order);
+  }
+
+  public createOrder(order: Order): Observable<Object> {
+    return this.httpClient.post(`${environment.apiUrl}/v1/orders`, order);
+  }
+
 }

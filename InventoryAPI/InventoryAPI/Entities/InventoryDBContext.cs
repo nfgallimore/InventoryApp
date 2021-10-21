@@ -1,10 +1,8 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 
 #nullable disable
 
-namespace InventoryAPI.Models
+namespace InventoryAPI.Entities
 {
     public partial class InventoryDBContext : DbContext
     {
@@ -34,6 +32,8 @@ namespace InventoryAPI.Models
             {
                 entity.ToTable("items");
 
+                entity.HasKey(e => e.Id);
+
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Brand)
@@ -59,6 +59,8 @@ namespace InventoryAPI.Models
             modelBuilder.Entity<Order>(entity =>
             {
                 entity.ToTable("orders");
+
+                entity.HasKey(e => e.Id);
 
                 entity.HasIndex(e => e.ItemId, "item_id_idx");
 

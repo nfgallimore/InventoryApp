@@ -11,14 +11,14 @@ export class ConfirmComponent {
   message: string;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data, private dialogRef: MatDialogRef<ConfirmComponent>) {
-    this.message = data.message;
+    this.message = data;
   }
 
   onOk() {
-    this.dialogRef.close({ confirmed: true });
+    this.dialogRef.close(true);
   }
 
   onCancel() {
-    this.dialogRef.close({ confirmed: false });
+    this.dialogRef.close(false);
   }
 }

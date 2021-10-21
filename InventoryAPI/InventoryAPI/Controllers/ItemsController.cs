@@ -1,7 +1,8 @@
 ﻿using InventoryAPI.Interfaces;
-using InventoryAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using InventoryAPI.Entities;
+using InventoryAPI.ViewModels;
 
 namespace InventoryAPI.Controllers
 {
@@ -17,46 +18,39 @@ namespace InventoryAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateItem([FromBody] Item item)
+        public IActionResult CreateItem([FromBody] ItemViewModel item)
         {
-            return Created(item.Id.ToString(), item);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            int id = _itemsRepository.CreateItem(item.ToEntity());
+            return Created(id.ToString(), item);
         }
 
         [HttpGet]
-        public IActionResult GetItems(int? id, string brand)
+        public IActionResult GetItems()
         {
-            // Get by ID
-            if (id.HasValue)
-            {
-                Item item = _itemsRepository.GetItem(id.Value);
-                if (item == null)
-                {
-                    return NotFound();
-                }
-                return Ok(item);
-            }
-
-            // Get by brand
-            if (!string.IsNullOrEmpty(brand))
-            {
-                return Ok(_itemsRepository.GetStockItems(brand));
-            }
-
-            // Get all products/items
             List<Item> items = _itemsRepository.GetItems();
             return Ok(items);
         }
 
         [HttpPut]
-        public IActionResult UpdateItem([FromBody] Item updatedItem)
+        public IActionResult UpdateItem([FromBody] ItemViewModel updatedItem)
         {
-            Item oldItem= _itemsRepository.GetItem(updatedItem.Id);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            Item oldItem = _itemsRepository.GetItem(updatedItem.Id);
             if (oldItem == null)
             {
                 return NotFound();
             }
 
-            return Ok(_itemsRepository.UpdateItem(updatedItem));
+            return Ok(_itemsRepository.UpdateItem(updatedItem.ToEntity()));
         }
 
 
