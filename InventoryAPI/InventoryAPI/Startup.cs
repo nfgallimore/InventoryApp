@@ -11,8 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InventoryAPI.Entities;
 using InventoryAPI.Extensions;
-using InventoryAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace InventoryAPI

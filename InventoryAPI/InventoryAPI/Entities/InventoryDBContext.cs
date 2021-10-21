@@ -1,10 +1,8 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 
 #nullable disable
 
-namespace InventoryAPI.Models
+namespace InventoryAPI.Entities
 {
     public partial class InventoryDBContext : DbContext
     {

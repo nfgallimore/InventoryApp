@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using InventoryAPI.Entities;
 using Microsoft.AspNetCore.Mvc;
 using InventoryAPI.Interfaces;
-using InventoryAPI.Models;
+using InventoryAPI.ViewModels;
 
 namespace InventoryAPI.Controllers
 {
@@ -17,9 +18,10 @@ namespace InventoryAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateOrder([FromBody] Order order)
+        public IActionResult CreateOrder([FromBody] OrderViewModel order)
         {
-            return Created(order.Id.ToString(), order);
+            int id = _ordersRepository.CreateOrder(order.ToEntity());
+            return Created(id.ToString(), order);
         }
 
         [HttpGet]
@@ -48,7 +50,7 @@ namespace InventoryAPI.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateOrder([FromBody] Order updatedOrder)
+        public IActionResult UpdateOrder([FromBody] OrderViewModel updatedOrder)
         {
             Order oldOrder = _ordersRepository.GetOrder(updatedOrder.Id);
             if (oldOrder == null)
@@ -56,7 +58,7 @@ namespace InventoryAPI.Controllers
                 return NotFound();
             }
 
-            return Ok(_ordersRepository.UpdateOrder(updatedOrder));
+            return Ok(_ordersRepository.UpdateOrder(updatedOrder.ToEntity()));
         }
 
 

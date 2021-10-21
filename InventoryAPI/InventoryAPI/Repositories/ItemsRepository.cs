@@ -1,8 +1,8 @@
 ﻿using InventoryAPI.Interfaces;
-using InventoryAPI.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using InventoryAPI.Entities;
 
 namespace InventoryAPI.Repositories
 {

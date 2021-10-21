@@ -14,7 +14,7 @@
     <mat-grid-tile>
       <mat-form-field appearance="fill" color="primary">
         <mat-label for="contact">Contact: </mat-label>
-        <input matInput id="contact" type="number" formControlName="contact">
+        <input matInput id="contact" type="text" formControlName="contact">
       </mat-form-field>
     </mat-grid-tile>
 
@@ -53,7 +53,7 @@
   </mat-grid-list>
   <div class="button-container">
     <button class="cancel-button" color="warning" mat-raised-button type="reset" (click)="onCancel()">Cancel</button>
-    <button class="create-button" color="primary" mat-raised-button type="submit">Create Order</button>
+    <button class="create-button" color="primary" mat-raised-button type="submit">Submit</button>
   </div>
 </form>
 

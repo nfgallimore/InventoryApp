@@ -28,16 +28,20 @@ export class OrdersTableComponent implements OnInit {
     this.dialog.open(OrderFormComponent, {
       width: '500px',
       data: order,
+    }).afterClosed().subscribe(order => {
+      if (order) {
+        this.ordersService.updateOrder(order).subscribe();
+      }
     });
   }
 
   onDelete(id): void {
     this.dialog.open(ConfirmComponent, {
       width: '500px',
-      data: {message: 'Are you sure you want to delete this order?'}
-    }).afterClosed().subscribe(data => {
-      if (data.confirmed) {
-        // delete it
+      data: 'Are you sure you want to delete this order?'
+    }).afterClosed().subscribe(confirmed => {
+      if (confirmed) {
+        this.ordersService.deleteOrder(id).subscribe();
       }
     });
   }

@@ -1,7 +1,8 @@
 ﻿using InventoryAPI.Interfaces;
-using InventoryAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using InventoryAPI.Entities;
+using InventoryAPI.ViewModels;
 
 namespace InventoryAPI.Controllers
 {
@@ -17,9 +18,10 @@ namespace InventoryAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateItem([FromBody] Item item)
+        public IActionResult CreateItem([FromBody] ItemViewModel item)
         {
-            return Created(item.Id.ToString(), item);
+            int id = _itemsRepository.CreateItem(item.ToEntity());
+            return Created(id.ToString(), item);
         }
 
         [HttpGet]
@@ -48,7 +50,7 @@ namespace InventoryAPI.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateItem([FromBody] Item updatedItem)
+        public IActionResult UpdateItem([FromBody] ItemViewModel updatedItem)
         {
             Item oldItem= _itemsRepository.GetItem(updatedItem.Id);
             if (oldItem == null)
@@ -56,7 +58,7 @@ namespace InventoryAPI.Controllers
                 return NotFound();
             }
 
-            return Ok(_itemsRepository.UpdateItem(updatedItem));
+            return Ok(_itemsRepository.UpdateItem(updatedItem.ToEntity()));
         }
 
 

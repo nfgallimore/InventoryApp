@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿#nullable disable
 
-#nullable disable
-
-namespace InventoryAPI.Models
+namespace InventoryAPI.Entities
 {
     public partial class Order
     {

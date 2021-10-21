@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-order-form',
@@ -18,13 +18,28 @@ export class OrderFormComponent implements OnInit {
     total: new FormControl('')
   });
 
-  constructor(private dialogRef: MatDialogRef<OrderFormComponent>) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data, private dialogRef: MatDialogRef<OrderFormComponent>) { 
+  }
 
   ngOnInit() {
+    if (this.data) {
+      this.orderForm.patchValue({
+        name: this.data.name,
+        contact: this.data.contact,
+        itemId: this.data.itemId,
+        quantity: this.data.quantity,
+        price: this.data.price,
+        total: this.data.total
+      });
+    }
   }
 
   onSubmit() {
-    console.log(this.orderForm);
+    // add order id as a form control since it is uneditable on the view
+    if (this.data) {
+      this.orderForm.addControl('id', new FormControl(this.data.id))
+    }
+    this.dialogRef.close(this.orderForm.value);
   }
 
   onCancel() {

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using InventoryAPI.Models;
+using InventoryAPI.Entities;
 
 namespace InventoryAPI.Interfaces
 {
