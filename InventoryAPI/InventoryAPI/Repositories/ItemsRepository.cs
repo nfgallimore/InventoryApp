@@ -24,9 +24,9 @@ namespace InventoryAPI.Repositories
             return _context.Items.FirstOrDefault(x => x.Id == id);
         }
 
-        public List<Item> GetStockItems(string name)
+        public List<Item> GetStockItems(string brand)
         {
-            return _context.Items.Where(item => string.Equals(item.Name, name, StringComparison.CurrentCultureIgnoreCase)).ToList();
+            return _context.Items.Where(item => string.Equals(item.Brand, brand, StringComparison.OrdinalIgnoreCase)).ToList();
         }
 
         public int CreateItem(Item item)

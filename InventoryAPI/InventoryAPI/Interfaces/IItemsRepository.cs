@@ -9,7 +9,7 @@ namespace InventoryAPI.Interfaces
 
         Item GetItem(int id);
 
-        List<Item> GetStockItems(string name);
+        List<Item> GetStockItems(string brand);
 
         int CreateItem(Item item);
 
