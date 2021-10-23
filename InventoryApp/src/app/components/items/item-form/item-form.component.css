@@ -1,0 +1,12 @@
+.create-button {
+    margin-right: 10px;
+  }
+  
+  .cancel-button {
+    margin-right: 10px;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: right;
+  }
