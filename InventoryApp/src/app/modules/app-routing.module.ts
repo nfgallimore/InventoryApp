@@ -5,8 +5,8 @@ import { ItemsComponent } from '../pages/items/items.component';
 
 const routes: Routes = [
   { path: '', component: OrdersComponent},
-  { path: 'orders', component: OrdersComponent},
-  { path: 'items', component: ItemsComponent}
+  { path: 'Orders', component: OrdersComponent},
+  { path: 'Items', component: ItemsComponent}
 ];
 
 @NgModule({

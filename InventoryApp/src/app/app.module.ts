@@ -40,6 +40,7 @@ import { ItemFormComponent } from './components/items/item-form/item-form.compon
   bootstrap: [AppComponent],
   entryComponents: [
     OrderFormComponent,
+    ItemFormComponent,
     ConfirmComponent
   ]
 })

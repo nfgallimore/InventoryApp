@@ -15,7 +15,7 @@ export class OrdersService {
   public getOrders(): Observable<Array<Order>> {
 
     // use http client to make a GET request to API
-    return this.httpClient.get(`${environment.apiUrl}/v1/orders`)
+    return this.httpClient.get(`${environment.apiUrl}/v1/Orders`)
 
     // `pipe(map(resp => {
 
@@ -38,15 +38,15 @@ export class OrdersService {
   }
 
   public deleteOrder(id: number): Observable<Object> {
-    return this.httpClient.delete(`${environment.apiUrl}/v1/orders?id=${id}`);
+    return this.httpClient.delete(`${environment.apiUrl}/v1/Orders?id=${id}`);
   }
 
   public updateOrder(order: Order): Observable<Object> {
-    return this.httpClient.put(`${environment.apiUrl}/v1/orders`, order);
+    return this.httpClient.put(`${environment.apiUrl}/v1/Orders`, order);
   }
 
   public createOrder(order: Order): Observable<Object> {
-    return this.httpClient.post(`${environment.apiUrl}/v1/orders`, order);
+    return this.httpClient.post(`${environment.apiUrl}/v1/Orders`, order);
   }
 
 }
