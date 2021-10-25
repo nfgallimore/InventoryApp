@@ -17,7 +17,7 @@ export class Item {
         item.model = element.model;
         item.price = element.price;
         item.quantity = element.quantity;
-        item.total = element.total;
+        item.total = item.price*item.quantity;
         items.push(item);
       });
   

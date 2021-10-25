@@ -17,8 +17,6 @@ export class OrdersService {
     // use http client to make a GET request to API
     return this.httpClient.get(`${environment.apiUrl}/v1/Orders`)
 
-    // `pipe(map(resp => {
-
     // this pipe + map essentially chains a function onto the end of the GET request, so that when
     // the GET request finishes, the inner part of this pipe will execute.
 

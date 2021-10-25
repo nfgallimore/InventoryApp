@@ -39,7 +39,14 @@ namespace InventoryAPI.Repositories
 
         public Item UpdateItem(Item item)
         {
-            _context.Entry(item).State = EntityState.Modified;
+            Item dbItem = _context.Items.Find(item.Id);
+            dbItem.Name = item.Name;
+            dbItem.Brand = item.Brand;
+            dbItem.Model = item.Model;
+            dbItem.Price = item.Price;
+            dbItem.Quantity = item.Quantity;
+            dbItem.Total = item.Total;
+            _context.Entry(dbItem).State = EntityState.Modified;
             _context.SaveChanges();
             return item;
         }

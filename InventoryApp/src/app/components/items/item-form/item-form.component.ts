@@ -15,7 +15,6 @@ export class ItemFormComponent implements OnInit {
     model: new FormControl(''),
     price: new FormControl(''),
     quantity: new FormControl(''),
-    total: new FormControl('')
   });
 
   constructor(@Inject(MAT_DIALOG_DATA) public data, private dialogRef: MatDialogRef<ItemFormComponent>) { 

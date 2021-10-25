@@ -36,7 +36,7 @@ export class ItemsService {
   }
 
   public deleteItem(id: number): Observable<Object> {
-    return this.httpClient.delete(`${environment.apiUrl}/v1/Items?id=${id}`);
+    return this.httpClient.delete(`${environment.apiUrl}/v1/Items?itemid=${id}`);
   }
 
   public updateItem(item: Item): Observable<Object> {
