@@ -27,6 +27,12 @@
     <th mat-header-cell *matHeaderCellDef> ItemId </th>
     <td mat-cell *matCellDef="let element"> {{element.itemId}} </td>
   </ng-container>
+
+  <!-- Description Column -->
+  <ng-container matColumnDef="Description">
+    <th mat-header-cell *matHeaderCellDef> Description </th>
+    <td mat-cell *matCellDef="let element"> {{element.itemId}} </td>
+  </ng-container>
   
   <!-- Quantity Column -->
   <ng-container matColumnDef="quantity">
