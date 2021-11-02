@@ -43,6 +43,7 @@ namespace InventoryAPI.Repositories
             Order dbOrder = _context.Orders.Find(order.Id);
             dbOrder.Contact = order.Contact;
             dbOrder.ItemId = order.ItemId;
+            dbOrder.Description = order.Description;
             dbOrder.Name = order.Name;
             dbOrder.Price = order.Price;
             dbOrder.Quantity = order.Quantity;

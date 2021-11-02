@@ -17,8 +17,10 @@ namespace InventoryAPI.Models
         {
         }
 
+        public virtual DbSet<Image> Images { get; set; }
         public virtual DbSet<Item> Items { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<Supplier> Suppliers { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -31,22 +33,41 @@ namespace InventoryAPI.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Image>(entity =>
+            {
+                entity.ToTable("images");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Description)
+                    .HasMaxLength(45)
+                    .HasColumnName("description");
+
+                entity.Property(e => e.ImageName)
+                    .HasMaxLength(45)
+                    .HasColumnName("image_name");
+
+                entity.Property(e => e.ItemId).HasColumnName("item_id");
+            });
+
             modelBuilder.Entity<Item>(entity =>
             {
                 entity.ToTable("items");
 
+                entity.HasIndex(e => e.SupplierId, "supplier_id_idx");
+
                 entity.Property(e => e.Id).HasColumnName("id");
 
-                entity.Property(e => e.Brand)
-                    .IsRequired()
+                entity.Property(e => e.Category)
                     .HasMaxLength(45)
-                    .HasColumnName("brand");
+                    .HasColumnName("category");
 
-                entity.Property(e => e.Model)
-                    .HasMaxLength(45)
-                    .HasColumnName("model");
+                entity.Property(e => e.Description)
+                    .HasColumnType("longtext")
+                    .HasColumnName("description");
 
                 entity.Property(e => e.Name)
+                    .IsRequired()
                     .HasMaxLength(45)
                     .HasColumnName("name");
 
@@ -54,9 +75,16 @@ namespace InventoryAPI.Models
 
                 entity.Property(e => e.Quantity).HasColumnName("quantity");
 
+                entity.Property(e => e.SupplierId).HasColumnName("supplier_id");
+
                 entity.Property(e => e.Total)
                     .HasMaxLength(45)
                     .HasColumnName("total");
+
+                entity.HasOne(d => d.Supplier)
+                    .WithMany(p => p.Items)
+                    .HasForeignKey(d => d.SupplierId)
+                    .HasConstraintName("supplier_id");
             });
 
             modelBuilder.Entity<Order>(entity =>
@@ -70,6 +98,10 @@ namespace InventoryAPI.Models
                 entity.Property(e => e.Contact)
                     .HasMaxLength(45)
                     .HasColumnName("contact");
+
+                entity.Property(e => e.Description)
+                    .HasMaxLength(45)
+                    .HasColumnName("description");
 
                 entity.Property(e => e.ItemId).HasColumnName("item_id");
 
@@ -89,6 +121,25 @@ namespace InventoryAPI.Models
                     .WithMany(p => p.Orders)
                     .HasForeignKey(d => d.ItemId)
                     .HasConstraintName("item_id");
+            });
+
+            modelBuilder.Entity<Supplier>(entity =>
+            {
+                entity.ToTable("suppliers");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Address)
+                    .HasMaxLength(45)
+                    .HasColumnName("address");
+
+                entity.Property(e => e.Contact)
+                    .HasMaxLength(45)
+                    .HasColumnName("contact");
+
+                entity.Property(e => e.Name)
+                    .HasMaxLength(45)
+                    .HasColumnName("name");
             });
 
             modelBuilder.Entity<User>(entity =>

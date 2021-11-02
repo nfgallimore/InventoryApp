@@ -11,6 +11,7 @@ namespace InventoryAPI.Models
         public string Name { get; set; }
         public string Contact { get; set; }
         public long? ItemId { get; set; }
+        public string Description { get; set; }
         public long? Quantity { get; set; }
         public long? Price { get; set; }
         public string Total { get; set; }

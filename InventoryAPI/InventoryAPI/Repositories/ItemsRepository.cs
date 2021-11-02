@@ -25,9 +25,9 @@ namespace InventoryAPI.Repositories
             return _context.Items.FirstOrDefault(x => x.Id == id);
         }
 
-        public List<Item> GetStockItems(string brand)
+        public List<Item> GetStockItems(string name)
         {
-            return _context.Items.Where(item => string.Equals(item.Brand, brand, StringComparison.OrdinalIgnoreCase)).ToList();
+            return _context.Items.Where(item => string.Equals(item.Name, name, StringComparison.OrdinalIgnoreCase)).ToList();
         }
 
         public int CreateItem(Item item)
@@ -40,12 +40,13 @@ namespace InventoryAPI.Repositories
         public Item UpdateItem(Item item)
         {
             Item dbItem = _context.Items.Find(item.Id);
+            dbItem.Category = item.Category;
             dbItem.Name = item.Name;
-            dbItem.Brand = item.Brand;
-            dbItem.Model = item.Model;
+            dbItem.Description = item.Description;
             dbItem.Price = item.Price;
             dbItem.Quantity = item.Quantity;
             dbItem.Total = item.Total;
+            dbItem.SupplierId = item.SupplierId;
             _context.Entry(dbItem).State = EntityState.Modified;
             _context.SaveChanges();
             return item;

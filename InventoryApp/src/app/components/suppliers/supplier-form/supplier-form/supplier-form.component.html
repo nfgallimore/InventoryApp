@@ -1,0 +1,34 @@
+<form [formGroup]="supplierForm" (ngSubmit)="onSubmit()">
+
+  <mat-grid-list cols="2" rowHeight="80px">
+
+    <!-- Name -->
+    <mat-grid-tile>
+      <mat-form-field appearance="fill" color="primary">
+        <mat-label for="name">Name: </mat-label>
+        <input matInput id="name" type="text" formControlName="name">
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <!-- Contact -->
+    <mat-grid-tile>
+      <mat-form-field appearance="fill" color="primary">
+        <mat-label for="contact">Contact: </mat-label>
+        <input matInput id="contact" type="text" formControlName="contact">
+      </mat-form-field>
+    </mat-grid-tile>
+
+    <!-- Item Id -->
+    <mat-grid-tile>
+      <mat-form-field appearance="fill" color="primary">
+        <mat-label for="address">Address: </mat-label>
+        <input matInput id="address" type="text" formControlName="address">
+      </mat-form-field>
+    </mat-grid-tile>
+
+</mat-grid-list>
+<div class="button-container">
+  <button class="cancel-button" color="warning" mat-raised-button type="reset" (click)="onCancel()">Cancel</button>
+  <button class="create-button" color="primary" mat-raised-button type="submit">Submit</button>
+</div>
+</form>

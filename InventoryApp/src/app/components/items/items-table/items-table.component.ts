@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Item } from 'src/app/models';
 import { ItemsService } from 'src/app/services/items.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSort, MatTableDataSource, MatPaginator } from '@angular/material';
 import { ItemFormComponent } from '../item-form/item-form.component';
 import { ConfirmComponent } from '../../confirm/confirm.component';
 
@@ -12,13 +12,22 @@ import { ConfirmComponent } from '../../confirm/confirm.component';
 })
 export class ItemsTableComponent implements OnInit {
 
-  items: Item[];
-  displayedColumns: string[] = ['id', 'brand', 'model', 'name', 'price', 'quantity', 'total', 'actions'];
+  displayedColumns: string[] = ['id', 'category', 'description', 'price', 'quantity', 'total', 'supplierId','actions'];
+
+  public dataSource = new MatTableDataSource<Item>();
+
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private itemsService: ItemsService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.getItems();
+  }
+
+  ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   onEdit(item): void {
@@ -48,9 +57,13 @@ export class ItemsTableComponent implements OnInit {
   }
 
   getItems() {
-    this.itemsService.getItems().subscribe((items: Item[]) => {
-      this.items = items;
-    });
+    this.itemsService.getItems().subscribe((items => {
+      this.dataSource.data = items as Item[];
+    }));
+  }
+
+  public doFilter = (value: string) => {
+    this.dataSource.filter = value.trim().toLocaleLowerCase();
   }
 
 }

@@ -10,11 +10,13 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class ItemFormComponent implements OnInit {
 
   itemForm = new FormGroup({
+    category: new FormControl('', Validators.required),
     name: new FormControl('', Validators.required),
-    brand: new FormControl('', Validators.required),
-    model: new FormControl(''),
+    description: new FormControl(''),
     price: new FormControl(''),
     quantity: new FormControl(''),
+    total: new FormControl(''),
+    supplierId: new FormControl('')
   });
 
   constructor(@Inject(MAT_DIALOG_DATA) public data, private dialogRef: MatDialogRef<ItemFormComponent>) { 
@@ -23,12 +25,13 @@ export class ItemFormComponent implements OnInit {
   ngOnInit() {
     if (this.data) {
       this.itemForm.patchValue({
+        category: this.data.category,
         name: this.data.name,
-        brand: this.data.brand,
-        model: this.data.model,
+        description: this.data.description,
         price: this.data.price,
         quantity: this.data.quantity,
-        total: this.data.total
+        total: this.data.total,
+        supplierId: this.data.supplierId
       });
     }
   }

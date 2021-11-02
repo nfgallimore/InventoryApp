@@ -10,7 +10,7 @@ export class SidenavComponent implements OnDestroy {
 
   mobileQuery: MediaQueryList;
 
-  pages = ['Orders', 'Items'];
+  pages = ['Orders', 'Items', 'Suppliers'];
 
   private _mobileQueryListener: () => void;
 

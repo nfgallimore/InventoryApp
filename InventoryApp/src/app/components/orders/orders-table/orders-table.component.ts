@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Order } from 'src/app/models';
 import { OrdersService } from 'src/app/services/orders.service';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSort, MatTableDataSource, MatPaginator } from '@angular/material';
 import { OrderFormComponent } from '../order-form/order-form.component';
 import { ConfirmComponent } from '../../confirm/confirm.component';
 
@@ -12,13 +12,22 @@ import { ConfirmComponent } from '../../confirm/confirm.component';
 })
 export class OrdersTableComponent implements OnInit {
 
-  orders: Order[];
   displayedColumns: string[] = ['id', 'name', 'contact', 'itemId', 'quantity', 'price', 'total', 'actions'];
+
+  public dataSource = new MatTableDataSource<Order>();
+
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private ordersService: OrdersService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.getOrders();
+  }
+
+  ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   onEdit(order): void {
@@ -48,9 +57,18 @@ export class OrdersTableComponent implements OnInit {
   }
 
   getOrders() {
-    this.ordersService.getOrders().subscribe((orders: Order[]) => {
-      this.orders = orders;
-    });
+    this.ordersService.getOrders().subscribe((orders => {
+      this.dataSource.data = orders as Order[];
+    }));
+  }
+
+  //public redirectToItem = (id: string) => {
+   // let url: string = `/components/items/itemsdetails/${id}`;
+   // this.router.navigate([url]);
+  //}
+
+  public doFilter = (value: string) => {
+    this.dataSource.filter = value.trim().toLocaleLowerCase();
   }
 
 }

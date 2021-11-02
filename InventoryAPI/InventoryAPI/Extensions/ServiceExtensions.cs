@@ -15,6 +15,9 @@ namespace InventoryAPI.Extensions
         {
             services.AddScoped<IOrdersRepository, OrdersRepository>();
             services.AddScoped<IItemsRepository, ItemsRepository>();
+            services.AddScoped<ISuppliersRepository, SuppliersRepository>();
+            //services.AddScoped<IUsersRepository, UsersRepository>();
+            //services.AddScoped<IImagesRepository, ImagesRepository>();
         }
     }
 }

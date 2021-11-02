@@ -17,7 +17,7 @@ export class Order {
       order.itemId = element.itemId;
       order.quantity = element.quantity;
       order.price = element.price;
-      order.total = "$"+element.price*element.quantity;
+      order.total = "$"+order.price*order.quantity;
       orders.push(order);
     });
 
