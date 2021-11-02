@@ -1,11 +1,11 @@
 <h1>Items</h1>
-<div fxLayout Align="right">
+<div fxLayout class="justy">
   <mat-form-field fxFlex="40%">
     <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Search">
   </mat-form-field>
 </div>
 
-<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z2">
 
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
@@ -64,5 +64,6 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 
-<mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50, 100]">
-</mat-paginator>
+<mat-toolbar class="mat-elevation-z8" display="right" id="paginator">
+  <mat-paginator  [pageSize]="10" [pageSizeOptions]="[5, 10, 20, 50, 100]"></mat-paginator>
+</mat-toolbar>

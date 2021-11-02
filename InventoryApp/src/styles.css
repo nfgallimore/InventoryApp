@@ -2,3 +2,13 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+mat-paginator, .justy {
+    justify-content: right;
+    margin: 40px;
+  }
+
+#paginator {
+  width: calc(100% - 80px);
+  margin: auto;
+  justify-content: right;
+  }

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { SupplierFormComponent } from 'src/app/components/suppliers/supplier-form/supplier-form/supplier-form.component';
-import { SuppliersTableComponent } from 'src/app/components/suppliers/suppliers-table/suppliers-table/suppliers-table.component';
+import { SupplierFormComponent } from 'src/app/components/suppliers/supplier-form/supplier-form.component';
+import { SuppliersTableComponent } from 'src/app/components/suppliers/suppliers-table/suppliers-table.component';
 import { SuppliersService } from 'src/app/services/suppliers.service';
 
 @Component({

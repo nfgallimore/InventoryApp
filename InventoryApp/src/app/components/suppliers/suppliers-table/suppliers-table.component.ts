@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Supplier } from 'src/app/models';
 import { SuppliersService } from 'src/app/services/suppliers.service';
-import { MatDialog } from '@angular/material';
-import { SupplierFormComponent } from '../../supplier-form/supplier-form/supplier-form.component';
+import { MatDialog, MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { SupplierFormComponent } from 'src/app/components/suppliers/supplier-form/supplier-form.component';
 import { ConfirmComponent } from 'src/app/components/confirm/confirm.component';
 
 @Component({
@@ -12,13 +12,22 @@ import { ConfirmComponent } from 'src/app/components/confirm/confirm.component';
 })
 export class SuppliersTableComponent implements OnInit {
 
-  suppliers: Supplier[];
   displayedColumns: string[] = ['id', 'name', 'contact', 'address', 'actions'];
+
+  public dataSource = new MatTableDataSource<Supplier>();
+
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private suppliersService: SuppliersService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.getSuppliers();
+  }
+
+  ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
   }
 
   onEdit(supplier): void {
@@ -27,9 +36,9 @@ export class SuppliersTableComponent implements OnInit {
       data: supplier,
     }).afterClosed().subscribe(supplier => {
       if (supplier) {
-        this.suppliersService.updateSupplier(supplier.subscribe(() => {
+        this.suppliersService.updateSupplier(supplier).subscribe(() => {
           this.getSuppliers();
-        }));
+        });
       }
     });
 }
@@ -48,8 +57,12 @@ export class SuppliersTableComponent implements OnInit {
   }
 
   getSuppliers() {
-    this.suppliersService.getSuppliers().subscribe((suppliers: Supplier[]) => {
-      this.suppliers = suppliers;
-    });
+    this.suppliersService.getSuppliers().subscribe((suppliers => {
+      this.dataSource.data = suppliers as Supplier[];
+    }));
+  }
+
+  public doFilter = (value: string) => {
+    this.dataSource.filter = value.trim().toLocaleLowerCase();
   }
 }
