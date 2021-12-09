@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System;
-using InventoryAPI.Entities;
+using InventoryAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace InventoryAPI.Repositories
 {
     public class ItemsRepository : IItemsRepository
     {
-        private readonly InventoryDBContext _context;
+        private readonly localdbContext _context;
 
-        public ItemsRepository(InventoryDBContext context)
+        public ItemsRepository(localdbContext context)
         {
             _context = context;
         }
@@ -20,7 +20,7 @@ namespace InventoryAPI.Repositories
             return _context.Items.ToList();
         }
 
-        public Item GetItem(int id)
+        public Item GetItem(long id)
         {
             return _context.Items.FirstOrDefault(x => x.Id == id);
         }
@@ -30,7 +30,7 @@ namespace InventoryAPI.Repositories
             return _context.Items.Where(item => string.Equals(item.Name, name, StringComparison.OrdinalIgnoreCase)).ToList();
         }
 
-        public int CreateItem(Item item)
+        public long CreateItem(Item item)
         {
             _context.Items.Add(item);
             _context.SaveChanges();
@@ -52,7 +52,7 @@ namespace InventoryAPI.Repositories
             return item;
         }
 
-        public void DeleteItem(int id)
+        public void DeleteItem(long id)
         {
             _context.Items.Remove(GetItem(id));
             _context.SaveChanges();

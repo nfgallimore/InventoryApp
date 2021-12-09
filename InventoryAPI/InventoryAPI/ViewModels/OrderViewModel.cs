@@ -1,4 +1,4 @@
-﻿using InventoryAPI.Entities;
+﻿using InventoryAPI.Models;
 
 namespace InventoryAPI.ViewModels
 {
@@ -11,6 +11,7 @@ namespace InventoryAPI.ViewModels
         public string Description { get; set; }
         public int? Quantity { get; set; }
         public int? Price { get; set; }
+        public int? Tax { get; set; }
         public int? Total { get; set; }
 
         public Order ToEntity()
@@ -21,9 +22,9 @@ namespace InventoryAPI.ViewModels
                 Name = Name,
                 Contact = Contact,
                 ItemId = ItemId,
-                Description = Description,
                 Quantity = Quantity,
                 Price = Price,
+                Tax = Tax,
                 Total = Total
             };
         }

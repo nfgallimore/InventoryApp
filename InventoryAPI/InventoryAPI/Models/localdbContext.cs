@@ -77,14 +77,7 @@ namespace InventoryAPI.Models
 
                 entity.Property(e => e.SupplierId).HasColumnName("supplier_id");
 
-                entity.Property(e => e.Total)
-                    .HasMaxLength(45)
-                    .HasColumnName("total");
-
-                entity.HasOne(d => d.Supplier)
-                    .WithMany(p => p.Items)
-                    .HasForeignKey(d => d.SupplierId)
-                    .HasConstraintName("supplier_id");
+                entity.Property(e => e.Total).HasColumnName("total");
             });
 
             modelBuilder.Entity<Order>(entity =>
@@ -99,10 +92,6 @@ namespace InventoryAPI.Models
                     .HasMaxLength(45)
                     .HasColumnName("contact");
 
-                entity.Property(e => e.Description)
-                    .HasMaxLength(45)
-                    .HasColumnName("description");
-
                 entity.Property(e => e.ItemId).HasColumnName("item_id");
 
                 entity.Property(e => e.Name)
@@ -113,9 +102,9 @@ namespace InventoryAPI.Models
 
                 entity.Property(e => e.Quantity).HasColumnName("quantity");
 
-                entity.Property(e => e.Total)
-                    .HasMaxLength(45)
-                    .HasColumnName("total");
+                entity.Property(e => e.Tax).HasColumnName("tax");
+
+                entity.Property(e => e.Total).HasColumnName("total");
 
                 entity.HasOne(d => d.Item)
                     .WithMany(p => p.Orders)

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using InventoryAPI.Entities;
+using InventoryAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using InventoryAPI.Interfaces;
 using InventoryAPI.ViewModels;
@@ -25,7 +25,7 @@ namespace InventoryAPI.Controllers
                 return BadRequest();
             }
 
-            int id = _ordersRepository.CreateOrder(order.ToEntity());
+            long id = _ordersRepository.CreateOrder(order.ToEntity());
             return Created(id.ToString(), order);
         }
 

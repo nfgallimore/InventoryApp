@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using InventoryAPI.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using InventoryAPI.Entities;
+using InventoryAPI.Models;
 
 namespace InventoryAPI.Repositories
 {
     public class SuppliersRepository : ISuppliersRepository
     {
-        private readonly InventoryDBContext _context;
+        private readonly localdbContext _context;
 
-        public SuppliersRepository(InventoryDBContext context)
+        public SuppliersRepository(localdbContext context)
         {
             _context = context;
         }
@@ -21,7 +21,7 @@ namespace InventoryAPI.Repositories
             return _context.Suppliers.ToList();
         }
 
-        public Supplier GetSupplier(int id)
+        public Supplier GetSupplier(long id)
         {
             return _context.Suppliers.FirstOrDefault(x => x.Id == id);
         }
@@ -31,7 +31,7 @@ namespace InventoryAPI.Repositories
             return _context.Suppliers.Where(supplier => string.Equals(supplier.Name, name, StringComparison.CurrentCultureIgnoreCase)).ToList();
         }
 
-        public int CreateSupplier(Supplier supplier)
+        public long CreateSupplier(Supplier supplier)
         {
             _context.Suppliers.Add(supplier);
             _context.SaveChanges();
@@ -50,7 +50,7 @@ namespace InventoryAPI.Repositories
             return supplier;
         }
 
-        public void DeleteSupplier(int id)
+        public void DeleteSupplier(long id)
         {
             _context.Suppliers.Remove(GetSupplier(id));
             _context.SaveChanges();

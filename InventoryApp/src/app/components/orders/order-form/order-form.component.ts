@@ -15,6 +15,7 @@ export class OrderFormComponent implements OnInit {
     itemId: new FormControl(''),
     quantity: new FormControl(''),
     price: new FormControl(''),
+    tax: new FormControl(''),
     total: new FormControl('')
   });
 
@@ -29,7 +30,9 @@ export class OrderFormComponent implements OnInit {
         itemId: this.data.itemId,
         quantity: this.data.quantity,
         price: this.data.price,
-        total: this.data.total
+        tax: this.data.price*this.data.quantity*0.03,
+        total: this.data.quantity*this.data.price+this.data.tax
+
       });
     }
   }

@@ -1,4 +1,4 @@
-<form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
 
   <mat-grid-list cols="2" rowHeight="80px">
 
@@ -18,35 +18,27 @@
       </mat-form-field>
     </mat-grid-tile>
 
-    <!-- Item Id -->
+    <!-- Username -->
     <mat-grid-tile>
       <mat-form-field appearance="fill" color="primary">
-        <mat-label for="itemId">Item Id: </mat-label>
-        <input matInput id="itemId" type="number" formControlName="itemId">
+        <mat-label for="username">Username: </mat-label>
+        <input matInput id="username" type="text" formControlName="username">
       </mat-form-field>
     </mat-grid-tile>
 
-    <!-- Quantity -->
+    <!-- Email -->
     <mat-grid-tile>
       <mat-form-field appearance="fill" color="primary">
-        <mat-label for="quantity">Quantity: </mat-label>
-        <input matInput id="quantity" type="number" formControlName="quantity">
+        <mat-label for="email">Email: </mat-label>
+        <input matInput id="email" type="email" formControlName="email">
       </mat-form-field>
     </mat-grid-tile>
 
-    <!-- Price -->
+    <!-- Password -->
     <mat-grid-tile>
       <mat-form-field appearance="fill" color="primary">
-        <mat-label for="price">Price: </mat-label>
-        <input matInput id="price" type="number" formControlName="price">
-      </mat-form-field>
-    </mat-grid-tile>
-
-    <!-- Price -->
-    <mat-grid-tile>
-      <mat-form-field appearance="fill" color="primary">
-        <mat-label for="tax">Tax(3%): </mat-label>
-        <input matInput id="tax" type="number" formControlName="tax">
+        <mat-label for="password">Password: </mat-label>
+        <input matInput id="password" type="password" formControlName="password">
       </mat-form-field>
     </mat-grid-tile>
 
@@ -56,4 +48,3 @@
     <button class="create-button" color="primary" mat-raised-button type="submit">Submit</button>
   </div>
 </form>
-

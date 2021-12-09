@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using InventoryAPI.Entities;
+using InventoryAPI.Models;
 
 namespace InventoryAPI.Interfaces
 {
@@ -8,14 +8,14 @@ namespace InventoryAPI.Interfaces
     {
         List<Supplier> GetSuppliers();
 
-        Supplier GetSupplier(int id);
+        Supplier GetSupplier(long id);
 
         List<Supplier> GetUserSuppliers(string name);
 
-        int CreateSupplier(Supplier supplier);
+        long CreateSupplier(Supplier supplier);
 
         Supplier UpdateSupplier(Supplier supplier);
 
-        void DeleteSupplier(int id);
+        void DeleteSupplier(long id);
     }
 }

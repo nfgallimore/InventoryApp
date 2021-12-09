@@ -47,4 +47,8 @@ export class ItemsService {
     return this.httpClient.post(`${environment.apiUrl}/v1/Items`, item);
   }
 
+  public getItem(id: number): Observable<Object> {
+    return this.httpClient.get(`${environment.apiUrl}/v1/Items?itemid=${id}`);
+  }
+
 }

@@ -1,4 +1,4 @@
-﻿using InventoryAPI.Entities;
+﻿using InventoryAPI.Models;
 
 namespace InventoryAPI.ViewModels
 {

@@ -12,7 +12,7 @@ import { ConfirmComponent } from '../../confirm/confirm.component';
 })
 export class OrdersTableComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'name', 'contact', 'itemId', 'quantity', 'price', 'total', 'actions'];
+  displayedColumns: string[] = ['id', 'name', 'contact', 'itemId', 'quantity', 'price', 'tax', 'total', 'actions'];
 
   public dataSource = new MatTableDataSource<Order>();
 

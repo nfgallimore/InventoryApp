@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using InventoryAPI.Entities;
+using InventoryAPI.Models;
 
 namespace InventoryAPI.Interfaces
 {
@@ -7,14 +7,14 @@ namespace InventoryAPI.Interfaces
     {
         List<Order> GetOrders();
 
-        Order GetOrder(int id);
+        Order GetOrder(long id);
 
         List<Order> GetUserOrders(string name);
 
-        int CreateOrder(Order order);
+        long CreateOrder(Order order);
 
         Order UpdateOrder(Order order);
 
-        void DeleteOrder(int id);
+        void DeleteOrder(long id);
     }
 }

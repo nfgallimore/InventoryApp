@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using InventoryAPI.Entities;
+using InventoryAPI.Models;
 using InventoryAPI.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,9 +9,9 @@ namespace InventoryAPI.Repositories
 {
     public class OrdersRepository : IOrdersRepository
     {
-        private readonly InventoryDBContext _context;
+        private readonly localdbContext _context;
 
-        public OrdersRepository(InventoryDBContext context)
+        public OrdersRepository(localdbContext context)
         {
             _context = context;
         }
@@ -21,7 +21,7 @@ namespace InventoryAPI.Repositories
             return _context.Orders.ToList();
         }
 
-        public Order GetOrder(int id)
+        public Order GetOrder(long id)
         {
             return _context.Orders.FirstOrDefault(x => x.Id == id);
         }
@@ -31,7 +31,7 @@ namespace InventoryAPI.Repositories
             return _context.Orders.Where(order => string.Equals(order.Name, name, StringComparison.CurrentCultureIgnoreCase)).ToList();
         }
 
-        public int CreateOrder(Order order)
+        public long CreateOrder(Order order)
         {
             _context.Orders.Add(order);
             _context.SaveChanges();
@@ -43,10 +43,10 @@ namespace InventoryAPI.Repositories
             Order dbOrder = _context.Orders.Find(order.Id);
             dbOrder.Contact = order.Contact;
             dbOrder.ItemId = order.ItemId;
-            dbOrder.Description = order.Description;
             dbOrder.Name = order.Name;
             dbOrder.Price = order.Price;
             dbOrder.Quantity = order.Quantity;
+            dbOrder.Tax = order.Tax;
             dbOrder.Total = order.Total;
 
             _context.Entry(dbOrder).State = EntityState.Modified;
@@ -54,7 +54,7 @@ namespace InventoryAPI.Repositories
             return order;
         }
 
-        public void DeleteOrder(int id)
+        public void DeleteOrder(long id)
         {
             _context.Orders.Remove(GetOrder(id));
             _context.SaveChanges();

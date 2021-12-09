@@ -18,10 +18,9 @@ namespace InventoryAPI.Models
         public string Description { get; set; }
         public long? Price { get; set; }
         public long? Quantity { get; set; }
-        public string Total { get; set; }
+        public long? Total { get; set; }
         public long? SupplierId { get; set; }
 
-        public virtual Supplier Supplier { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
     }
 }

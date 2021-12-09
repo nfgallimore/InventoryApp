@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using InventoryAPI.Entities;
+using InventoryAPI.Models;
 using InventoryAPI.Interfaces;
 using InventoryAPI.ViewModels;
 
@@ -26,7 +26,7 @@ namespace InventoryAPI.Controllers
                 return BadRequest();
             }
 
-            int id = _suppliersRepository.CreateSupplier(supplier.ToEntity());
+            long id = _suppliersRepository.CreateSupplier(supplier.ToEntity());
             return Created(id.ToString(), supplier);
         }
 

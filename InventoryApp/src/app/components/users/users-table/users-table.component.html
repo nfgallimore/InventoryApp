@@ -1,4 +1,4 @@
-<h1>Orders</h1>
+<h1>Users</h1>
 
 <div fxLayout class="justy">
   <mat-form-field fxFlex="40%">
@@ -13,7 +13,7 @@
 
   <!-- Id Column -->
   <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Id. </th>
     <td mat-cell *matCellDef="let element"> {{element.id}} </td>
   </ng-container>
 
@@ -29,40 +29,16 @@
     <td mat-cell *matCellDef="let element"> {{element.contact}} </td>
   </ng-container>
 
-  <!-- ItemId Column -->
-  <ng-container matColumnDef="itemId">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> ItemId </th>
-    <td mat-cell *matCellDef="let element"> {{element.itemId}} </td>
+  <!-- Username Column -->
+  <ng-container matColumnDef="username">
+    <th mat-header-cell *matHeaderCellDef> Username </th>
+    <td mat-cell *matCellDef="let element"> {{element.username}} </td>
   </ng-container>
 
-  <!-- Description Column -->
-  <ng-container matColumnDef="Description">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
-    <td mat-cell *matCellDef="let element"> {{element.itemId}} </td>
-  </ng-container>
-  
-  <!-- Quantity Column -->
-  <ng-container matColumnDef="quantity">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </th>
-    <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
-  </ng-container>
-
-  <!-- Price Column -->
-  <ng-container matColumnDef="price">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
-    <td mat-cell *matCellDef="let element"> {{element.price | currency}} </td>
-  </ng-container>
-
-  <!-- Total Column -->
-  <ng-container matColumnDef="total">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Total </th>
-    <td mat-cell *matCellDef="let element"> {{element.total | currency}} </td>
-  </ng-container>
-
-  <!-- Tax Column -->
-  <ng-container matColumnDef="tax">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Tax </th>
-    <td mat-cell *matCellDef="let element"> {{element.tax | currency}} </td>
+  <!-- Username Column -->
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef> Email </th>
+    <td mat-cell *matCellDef="let element"> {{element.email}} </td>
   </ng-container>
 
   <!-- Actions Column -->

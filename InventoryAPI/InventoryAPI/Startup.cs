@@ -11,7 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using InventoryAPI.Entities;
+using InventoryAPI.Models;
 using InventoryAPI.Extensions;
 using Microsoft.EntityFrameworkCore;
 
@@ -70,7 +70,7 @@ namespace InventoryAPI
 
         public void ConfigureDatabase(IServiceCollection services)
         {
-            services.AddDbContext<InventoryDBContext>(options =>
+            services.AddDbContext<localdbContext>(options =>
                 options.UseMySQL(Configuration.GetConnectionString("InventoryDB")));
         }
     }

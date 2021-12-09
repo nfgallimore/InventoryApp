@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using InventoryAPI.Entities;
+using InventoryAPI.Models;
 
 namespace InventoryAPI.Interfaces
 {
@@ -7,14 +7,14 @@ namespace InventoryAPI.Interfaces
     {
         List<Item> GetItems();
 
-        Item GetItem(int id);
+        Item GetItem(long id);
 
         List<Item> GetStockItems(string name);
 
-        int CreateItem(Item item);
+        long CreateItem(Item item);
 
         Item UpdateItem(Item item);
 
-        void DeleteItem(int id);
+        void DeleteItem(long id);
     }
 }

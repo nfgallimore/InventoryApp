@@ -5,7 +5,7 @@ export class Item {
     description: string;
     price: number;
     quantity: number;
-    total: string;
+    total: number;
     supplierId: string;
     static fromJsonArray(jsonArray): Item[] {
       const items = [];
@@ -18,7 +18,7 @@ export class Item {
         item.description = element.description;
         item.price = element.price;
         item.quantity = element.quantity;
-        item.total = "$"+item.price*item.quantity;
+        item.total = item.price*item.quantity;
         item.supplierId = element.supplierId;
         items.push(item);
       });
