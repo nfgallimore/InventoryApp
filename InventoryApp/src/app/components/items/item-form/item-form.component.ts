@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-item-form',
@@ -15,7 +15,6 @@ export class ItemFormComponent implements OnInit {
     description: new FormControl(''),
     price: new FormControl(''),
     quantity: new FormControl(''),
-    total: new FormControl(''),
     supplierId: new FormControl('')
   });
 
@@ -30,7 +29,7 @@ export class ItemFormComponent implements OnInit {
         description: this.data.description,
         price: this.data.price,
         quantity: this.data.quantity,
-        total: this.data.total,
+        total: this.data.price*this.data.quantity,
         supplierId: this.data.supplierId
       });
     }

@@ -17,14 +17,14 @@ import { ItemsTableComponent } from './components/items/items-table/items-table.
 import { ItemFormComponent } from './components/items/item-form/item-form.component';
 import { SupplierFormComponent } from './components/suppliers/supplier-form/supplier-form.component';
 import { SuppliersTableComponent } from './components/suppliers/suppliers-table/suppliers-table.component';
-import { ImagesTableComponent } from './components/images/images-table/images-table/images-table.component';
+import { ImagesTableComponent } from './components/images/images-table/images-table.component';
 import { ImageFormComponent } from './components/images/image-form/image-form/image-form.component';
-import { UserFormComponent } from './components/users/user-form/user-form/user-form.component';
-import { UsersTableComponent } from './components/users/users-table/users-table/users-table.component';
+import { UserFormComponent } from './components/users/user-form/user-form.component';
+import { UsersTableComponent } from './components/users/users-table/users-table.component';
 import { SuppliersComponent } from './pages/suppliers/suppliers.component';
-import { UsersComponent } from './pages/users/users/users.component';
+import { UsersComponent } from './pages/users/users.component';
 import { ImagesComponent } from './pages/images/images/images.component';
-import { MatSortModule } from '@angular/material';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [

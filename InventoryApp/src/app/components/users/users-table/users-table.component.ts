@@ -2,7 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from 'src/app/models';
 import { UserFormComponent } from '../user-form/user-form.component';
 import { UsersService } from 'src/app/services/users.service';
-import { MatDialog, MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 import { ConfirmComponent } from '../../confirm/confirm.component';
 
 @Component({

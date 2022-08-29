@@ -14,8 +14,7 @@ export class Item {
         const item = new Item();
         item.id = element.id;
         item.category = element.category;
-        item.name = element.name;
-        item.description = element.description;
+        item.description = element.name+" "+element.description;
         item.price = element.price;
         item.quantity = element.quantity;
         item.total = item.price*item.quantity;

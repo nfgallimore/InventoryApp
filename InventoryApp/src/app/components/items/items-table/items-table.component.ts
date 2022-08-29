@@ -1,9 +1,12 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Item } from 'src/app/models';
 import { ItemsService } from 'src/app/services/items.service';
-import { MatDialog, MatSort, MatTableDataSource, MatPaginator } from '@angular/material';
-import { ItemFormComponent } from '../item-form/item-form.component';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 import { ConfirmComponent } from '../../confirm/confirm.component';
+import { ItemFormComponent } from '../item-form/item-form.component';
 
 @Component({
   selector: 'app-items-table',

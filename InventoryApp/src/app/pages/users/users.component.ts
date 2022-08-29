@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { UsersTableComponent } from 'src/app/components/users/users-table/users-table.component';
 import { UserFormComponent } from 'src/app/components/users/user-form/user-form.component';
 import { UsersService } from 'src/app/services/users.service';

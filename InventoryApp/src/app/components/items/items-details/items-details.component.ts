@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Item } from 'src/app/models';
 import { ActivatedRoute } from '@angular/router';
 import { ItemsService } from 'src/app/services/items.service';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
 @Component({
   selector: 'app-items-details',
   templateUrl: './items-details.component.html',

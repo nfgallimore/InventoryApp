@@ -1,9 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Order } from 'src/app/models';
 import { OrdersService } from 'src/app/services/orders.service';
-import { MatDialog, MatSort, MatTableDataSource, MatPaginator } from '@angular/material';
-import { OrderFormComponent } from '../order-form/order-form.component';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 import { ConfirmComponent } from '../../confirm/confirm.component';
+import { OrderFormComponent } from '../order-form/order-form.component';
 
 @Component({
   selector: 'app-orders-table',

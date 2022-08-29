@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { OrderFormComponent } from 'src/app/components/orders/order-form/order-form.component';
 import { OrdersTableComponent } from 'src/app/components/orders/orders-table/orders-table.component';
 import { OrdersService } from 'src/app/services/orders.service';

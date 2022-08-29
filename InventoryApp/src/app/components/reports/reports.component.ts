@@ -3,7 +3,7 @@ import { SuppliersTableComponent } from '../suppliers/suppliers-table/suppliers-
 import { ItemsTableComponent } from '../items/items-table/items-table.component';
 import { OrdersTableComponent } from '../orders/orders-table/orders-table.component';
 import { UsersTableComponent } from '../users/users-table/users-table.component';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource } from '@angular/material/table';
 import { Item, User } from 'src/app/models';
 import { UsersService } from 'src/app/services/users.service';
 import { ItemsService } from 'src/app/services/items.service';

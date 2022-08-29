@@ -1,9 +1,12 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Supplier } from 'src/app/models';
 import { SuppliersService } from 'src/app/services/suppliers.service';
-import { MatDialog, MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { ConfirmComponent } from '../../confirm/confirm.component';
 import { SupplierFormComponent } from 'src/app/components/suppliers/supplier-form/supplier-form.component';
-import { ConfirmComponent } from 'src/app/components/confirm/confirm.component';
 
 @Component({
   selector: 'app-suppliers-table',
